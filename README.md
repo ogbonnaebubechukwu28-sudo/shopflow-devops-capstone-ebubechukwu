@@ -1,4 +1,4 @@
-# ShopFlow DevOps Capstone
+# ShopFlow DevOps - Version B
 
 ShopFlow is a small e-commerce application (Flask API + PostgreSQL + Redis +
 static frontend). This repository takes it through a full DevOps lifecycle:
