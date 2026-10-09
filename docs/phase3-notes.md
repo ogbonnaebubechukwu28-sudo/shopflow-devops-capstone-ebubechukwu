@@ -51,10 +51,7 @@
 
 ## Evidence: docker images
 postgres:16-alpine                                                                                    721873c34ceb        420MB          117MB   U    
-postgres:latest                                                                                       86c951e05bf5        650MB          169MB   U    
 redis:7-alpine                                                                                        858f009f9709       57.8MB         16.7MB   U    
-redis:alpine                                                                                          9d317178ecea        155MB         38.1MB   U    
-redis:latest                                                                                          718f745deb7d        213MB         57.6MB   U    
 shopflow-api:1.0.0                                                                                    78725d362d38        237MB         56.8MB   U    
 shopflow-frontend:1.0.0                                                                               2524c1fa04e7       73.7MB           21MB   U    
 ## Evidence: docker compose ps
