@@ -1,22 +1,25 @@
-FROM python:3.12-slim AS base
+FROM python:3.12-slim
+
+LABEL org.opencontainers.image.title="shopflow-api" \
+      org.opencontainers.image.version="1.0.0"
 
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1
 
+# Non-root user created first so later COPYs can set ownership directly
+RUN useradd --create-home --uid 1000 appuser \
+    && chown appuser:appuser /app
+
 # Install deps first so this layer is cached across code-only changes
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app.py entrypoint.sh ./
+COPY --chown=appuser:appuser app.py entrypoint.sh ./
 RUN chmod +x entrypoint.sh
 
-# Run as a non-root, unprivileged user
-RUN useradd --create-home --uid 1000 appuser \
-    && chown -R appuser:appuser /app
 USER appuser
-
 EXPOSE 5000
 
 # No curl in the image (keeps it small) - use Python's stdlib instead
