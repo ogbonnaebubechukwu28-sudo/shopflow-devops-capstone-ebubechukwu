@@ -14,7 +14,7 @@ services:
       context: ../application/backend
     image: shopflow-api:1.0.0
     environment:
-      DATABASE_URL: postgresql://shopflow:${POSTGRES_PASSWORD:-shopflow}@db:5432/shopflow
+      DATABASE_URL: postgresql+psycopg2://shopflow:${POSTGRES_PASSWORD:-shopflow}@db:5432/shopflow
       REDIS_URL: redis://cache:6379/0
       PORT: "5000"
       SEED_DB: "true"
