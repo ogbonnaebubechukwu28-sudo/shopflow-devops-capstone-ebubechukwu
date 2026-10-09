@@ -1,4 +1,4 @@
-# ShopFlow DevOps - Version A
+# ShopFlow DevOps Capstone
 
 
 ShopFlow is a small e-commerce application (Flask API + PostgreSQL + Redis +
