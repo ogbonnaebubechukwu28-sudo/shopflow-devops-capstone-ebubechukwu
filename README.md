@@ -61,7 +61,13 @@ _TODO — filled in during Phase 4._
 
 ## 7. Branching Strategy
 
-_TODO — filled in during Phase 2._
+## Branching Strategy
+
+- main: always deployable, protected, changes only via pull request
+- feature/<name>: new work (e.g. feature/add-dockerfile-healthcheck)
+- fix/<name>: bug fixes
+- Commits use short imperative messages (e.g. "Add healthcheck to backend")
+- Every PR needs to pass CI (from Phase 4) before merging
 
 ## 8. Monitoring & Logging
 
