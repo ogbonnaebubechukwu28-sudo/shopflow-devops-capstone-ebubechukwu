@@ -61,8 +61,6 @@ _TODO — filled in during Phase 4._
 
 ## 7. Branching Strategy
 
-## Branching Strategy
-
 - main: always deployable, protected, changes only via pull request
 - feature/<name>: new work (e.g. feature/add-dockerfile-healthcheck)
 - fix/<name>: bug fixes
