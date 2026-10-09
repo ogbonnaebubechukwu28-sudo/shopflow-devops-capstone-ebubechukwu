@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.env
+.env
+docker/.env
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.tfvars
+
+# Ansible
+*.retry
+
+# Kubernetes / misc
+kubeconfig
+*.log
+.DS_Store
