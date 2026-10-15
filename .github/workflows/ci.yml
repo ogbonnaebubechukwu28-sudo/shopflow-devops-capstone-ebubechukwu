@@ -74,7 +74,7 @@ jobs:
         run: docker build -t shopflow-frontend:ci application/frontend
 
       - name: Scan backend image (Trivy)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: shopflow-api:ci
           format: table
@@ -83,7 +83,7 @@ jobs:
           exit-code: "1"
 
       - name: Scan frontend image (Trivy)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: shopflow-frontend:ci
           format: table
