@@ -1,0 +1,118 @@
+LAST SEEN   TYPE      REASON                         OBJECT                            MESSAGE
+51m         Warning   Unhealthy                      pod/backend-55d45cf984-2n7lx      Readiness probe failed: HTTP probe failed with statuscode: 503
+40m         Normal    ScalingReplicaSet              deployment/backend                Scaled up replica set backend-7567c7b8bc from 0 to 1
+40m         Normal    Scheduled                      pod/backend-7567c7b8bc-5zg2s      Successfully assigned shopflow/backend-7567c7b8bc-5zg2s to minikube
+40m         Normal    SuccessfulCreate               replicaset/backend-7567c7b8bc     Created pod: backend-7567c7b8bc-5zg2s
+40m         Normal    Pulled                         pod/backend-7567c7b8bc-5zg2s      Container image "shopflow-api:1.0.0" already present on machine and can be accessed by the pod
+40m         Normal    Started                        pod/backend-7567c7b8bc-5zg2s      Container started
+40m         Normal    Created                        pod/backend-7567c7b8bc-5zg2s      Container created
+39m         Normal    Killing                        pod/backend-55d45cf984-2n7lx      Stopping container backend
+39m         Normal    ScalingReplicaSet              deployment/backend                Scaled down replica set backend-55d45cf984 from 2 to 1
+39m         Normal    Scheduled                      pod/backend-7567c7b8bc-hk848      Successfully assigned shopflow/backend-7567c7b8bc-hk848 to minikube
+39m         Normal    SuccessfulDelete               replicaset/backend-55d45cf984     Deleted pod: backend-55d45cf984-2n7lx
+39m         Normal    SuccessfulCreate               replicaset/backend-7567c7b8bc     Created pod: backend-7567c7b8bc-hk848
+39m         Normal    ScalingReplicaSet              deployment/backend                Scaled up replica set backend-7567c7b8bc from 1 to 2
+39m         Warning   Unhealthy                      pod/backend-55d45cf984-bxjfb      Readiness probe failed: HTTP probe failed with statuscode: 503
+39m         Warning   Unhealthy                      pod/backend-55d45cf984-2n7lx      Readiness probe failed: Get "http://10.244.0.20:5000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+38m         Normal    ScalingReplicaSet              deployment/backend                Scaled down replica set backend-55d45cf984 from 1 to 0
+38m         Normal    SuccessfulDelete               replicaset/backend-55d45cf984     Deleted pod: backend-55d45cf984-bxjfb
+38m         Normal    Killing                        pod/backend-55d45cf984-bxjfb      Stopping container backend
+38m         Warning   Unhealthy                      pod/backend-55d45cf984-bxjfb      Readiness probe failed: Get "http://10.244.0.18:5000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+38m         Warning   Unhealthy                      pod/backend-55d45cf984-bxjfb      Readiness probe failed: Get "http://10.244.0.18:5000/ready": dial tcp 10.244.0.18:5000: connect: connection refused
+38m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/backend   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+38m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/backend   failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+34m         Warning   Unhealthy                      pod/postgres-0                    Liveness probe failed: command timed out: "pg_isready -U shopflow -d shopflow" timed out after 1s
+34m         Warning   Unhealthy                      pod/redis-5869899d84-gtcfd        Liveness probe failed: command timed out: "redis-cli ping" timed out after 1s
+33m         Warning   Unhealthy                      pod/postgres-0                    Readiness probe failed: command timed out: "pg_isready -U shopflow -d shopflow" timed out after 1s
+32m         Warning   Unhealthy                      pod/frontend-6844566f88-wdtm7     Readiness probe failed: Get "http://10.244.0.12:8080/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+32m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/backend   failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+32m         Warning   Unhealthy                      pod/backend-7567c7b8bc-hk848      Liveness probe failed: Get "http://10.244.0.22:5000/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+32m         Warning   Unhealthy                      pod/frontend-6844566f88-x9pkc     Readiness probe failed: Get "http://10.244.0.13:8080/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+32m         Warning   NodeNotReady                   pod/redis-5869899d84-gtcfd        Node is not ready
+31m         Warning   NodeNotReady                   pod/frontend-6844566f88-wdtm7     Node is not ready
+31m         Warning   Unhealthy                      pod/backend-7567c7b8bc-hk848      Readiness probe failed: HTTP probe failed with statuscode: 503
+31m         Warning   NodeNotReady                   pod/backend-7567c7b8bc-5zg2s      Node is not ready
+31m         Warning   NodeNotReady                   pod/backend-7567c7b8bc-hk848      Node is not ready
+31m         Warning   NodeNotReady                   pod/frontend-6844566f88-x9pkc     Node is not ready
+31m         Warning   Unhealthy                      pod/backend-7567c7b8bc-hk848      Readiness probe failed: Get "http://10.244.0.22:5000/ready": read tcp 10.244.0.1:46640->10.244.0.22:5000: read: connection reset by peer
+31m         Warning   NodeNotReady                   pod/postgres-0                    Node is not ready
+31m         Warning   Unhealthy                      pod/frontend-6844566f88-wdtm7     Readiness probe failed: Get "http://10.244.0.12:8080/": dial tcp 10.244.0.12:8080: connect: connection refused
+31m         Warning   Unhealthy                      pod/backend-7567c7b8bc-5zg2s      Readiness probe failed: HTTP probe failed with statuscode: 503
+31m         Warning   Unhealthy                      pod/postgres-0                    Readiness probe errored and resulted in unknown state: rpc error: code = Unknown desc = Error response from daemon: No such container: ccaf9b01ee7632f36a121613473e9318b84e237a5fd719088b81e1cc4915e532
+31m         Warning   Unhealthy                      pod/redis-5869899d84-gtcfd        Readiness probe errored and resulted in unknown state: rpc error: code = Unknown desc = container not running (d67274c6580b69083c8b808c0ae2f9aeaf788c52bb6fce935dc89d71601cb9ce)
+31m         Warning   Unhealthy                      pod/backend-7567c7b8bc-5zg2s      Liveness probe failed: Get "http://10.244.0.21:5000/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+30m         Normal    Started                        pod/redis-5869899d84-gtcfd        Container started
+30m         Warning   Unhealthy                      pod/frontend-6844566f88-x9pkc     Readiness probe failed: Get "http://10.244.0.13:8080/": dial tcp 10.244.0.13:8080: connect: connection refused
+30m         Warning   Unhealthy                      pod/backend-7567c7b8bc-hk848      Liveness probe failed: Get "http://10.244.0.22:5000/health": dial tcp 10.244.0.22:5000: connect: connection refused
+30m         Normal    Killing                        pod/frontend-6844566f88-x9pkc     Container frontend failed liveness probe, will be restarted
+30m         Normal    Killing                        pod/frontend-6844566f88-wdtm7     Container frontend failed liveness probe, will be restarted
+29m         Normal    Pulled                         pod/frontend-6844566f88-x9pkc     Container image "shopflow-frontend:1.0.0" already present on machine and can be accessed by the pod
+29m         Normal    Pulled                         pod/frontend-6844566f88-wdtm7     Container image "shopflow-frontend:1.0.0" already present on machine and can be accessed by the pod
+29m         Normal    Created                        pod/frontend-6844566f88-x9pkc     Container created
+29m         Normal    Created                        pod/frontend-6844566f88-wdtm7     Container created
+29m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/backend   failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)
+29m         Normal    Started                        pod/frontend-6844566f88-wdtm7     Container started
+29m         Normal    Started                        pod/frontend-6844566f88-x9pkc     Container started
+28m         Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 3; reason: cpu resource utilization (percentage of request) above target
+28m         Normal    ScalingReplicaSet              deployment/backend                Scaled up replica set backend-7567c7b8bc from 2 to 3
+28m         Normal    SuccessfulCreate               replicaset/backend-7567c7b8bc     Created pod: backend-7567c7b8bc-cbg75
+28m         Normal    Scheduled                      pod/backend-7567c7b8bc-cbg75      Successfully assigned shopflow/backend-7567c7b8bc-cbg75 to minikube
+28m         Normal    Pulled                         pod/redis-5869899d84-gtcfd        Container image "redis:7-alpine" already present on machine and can be accessed by the pod
+28m         Normal    Created                        pod/redis-5869899d84-gtcfd        Container created
+27m         Normal    Started                        pod/postgres-0                    Container started
+27m         Warning   Unhealthy                      pod/backend-7567c7b8bc-cbg75      Liveness probe failed: Get "http://10.244.0.27:5000/health": dial tcp 10.244.0.27:5000: connect: connection refused (Client.Timeout exceeded while awaiting headers)
+27m         Warning   Unhealthy                      pod/backend-7567c7b8bc-cbg75      Readiness probe failed: Get "http://10.244.0.27:5000/ready": dial tcp 10.244.0.27:5000: connect: connection refused (Client.Timeout exceeded while awaiting headers)
+26m         Warning   Unhealthy                      pod/backend-7567c7b8bc-cbg75      Liveness probe failed: Get "http://10.244.0.27:5000/health": dial tcp 10.244.0.27:5000: connect: connection refused
+26m         Normal    Killing                        pod/backend-7567c7b8bc-cbg75      Container backend failed liveness probe, will be restarted
+26m         Normal    Killing                        pod/backend-7567c7b8bc-hk848      Container backend failed liveness probe, will be restarted
+26m         Normal    TaintManagerEviction           pod/backend-7567c7b8bc-5zg2s      Cancelling deletion of Pod shopflow/backend-7567c7b8bc-5zg2s
+26m         Normal    TaintManagerEviction           pod/postgres-0                    Cancelling deletion of Pod shopflow/postgres-0
+26m         Normal    Pulled                         pod/postgres-0                    Container image "postgres:16-alpine" already present on machine and can be accessed by the pod
+26m         Normal    TaintManagerEviction           pod/frontend-6844566f88-wdtm7     Cancelling deletion of Pod shopflow/frontend-6844566f88-wdtm7
+26m         Normal    TaintManagerEviction           pod/backend-7567c7b8bc-cbg75      Cancelling deletion of Pod shopflow/backend-7567c7b8bc-cbg75
+26m         Normal    TaintManagerEviction           pod/redis-5869899d84-gtcfd        Cancelling deletion of Pod shopflow/redis-5869899d84-gtcfd
+26m         Normal    TaintManagerEviction           pod/backend-7567c7b8bc-hk848      Cancelling deletion of Pod shopflow/backend-7567c7b8bc-hk848
+26m         Normal    TaintManagerEviction           pod/frontend-6844566f88-x9pkc     Cancelling deletion of Pod shopflow/frontend-6844566f88-x9pkc
+26m         Normal    Created                        pod/postgres-0                    Container created
+26m         Warning   Unhealthy                      pod/backend-7567c7b8bc-cbg75      Readiness probe failed: Get "http://10.244.0.27:5000/ready": dial tcp 10.244.0.27:5000: connect: connection refused
+25m         Normal    Pulled                         pod/backend-7567c7b8bc-cbg75      Container image "shopflow-api:1.0.0" already present on machine and can be accessed by the pod
+25m         Normal    Created                        pod/backend-7567c7b8bc-cbg75      Container created
+25m         Normal    Started                        pod/backend-7567c7b8bc-cbg75      Container started
+24m         Normal    Pulled                         pod/backend-7567c7b8bc-hk848      Container image "shopflow-api:1.0.0" already present on machine and can be accessed by the pod
+24m         Normal    Created                        pod/backend-7567c7b8bc-hk848      Container created
+24m         Normal    Started                        pod/backend-7567c7b8bc-hk848      Container started
+23m         Normal    ScalingReplicaSet              deployment/backend                Scaled up replica set backend-7567c7b8bc from 3 to 4
+23m         Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 4; reason: cpu resource utilization (percentage of request) above target
+23m         Normal    SuccessfulCreate               replicaset/backend-7567c7b8bc     Created pod: backend-7567c7b8bc-vmqch
+23m         Normal    Scheduled                      pod/backend-7567c7b8bc-vmqch      Successfully assigned shopflow/backend-7567c7b8bc-vmqch to minikube
+23m         Warning   Unhealthy                      pod/frontend-6844566f88-wdtm7     Liveness probe failed: Get "http://10.244.0.12:8080/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+23m         Warning   Unhealthy                      pod/postgres-0                    Readiness probe errored and resulted in unknown state: rpc error: code = Unknown desc = container not running (4f81026ea3eddbb0b6412238a1e1bdbaba958cf7ebca8b43d18544a3e3496b10)
+23m         Warning   Unhealthy                      pod/redis-5869899d84-gtcfd        Readiness probe failed: command timed out: "redis-cli ping" timed out after 1s
+22m         Warning   Unhealthy                      pod/backend-7567c7b8bc-vmqch      Liveness probe failed: Get "http://10.244.0.28:5000/health": dial tcp 10.244.0.28:5000: connect: connection refused
+22m         Warning   Unhealthy                      pod/backend-7567c7b8bc-hk848      Readiness probe failed: Get "http://10.244.0.22:5000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+21m         Warning   Unhealthy                      pod/frontend-6844566f88-x9pkc     Liveness probe failed: Get "http://10.244.0.13:8080/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+21m         Normal    Killing                        pod/redis-5869899d84-gtcfd        Container redis failed liveness probe, will be restarted
+21m         Normal    Killing                        pod/postgres-0                    Container postgres failed liveness probe, will be restarted
+21m         Normal    Killing                        pod/backend-7567c7b8bc-vmqch      Container backend failed liveness probe, will be restarted
+21m         Warning   Unhealthy                      pod/backend-7567c7b8bc-cbg75      Readiness probe failed: Get "http://10.244.0.27:5000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+20m         Warning   Unhealthy                      pod/backend-7567c7b8bc-vmqch      Readiness probe failed: Get "http://10.244.0.28:5000/ready": dial tcp 10.244.0.28:5000: connect: connection refused
+20m         Warning   BackOff                        pod/backend-7567c7b8bc-vmqch      Back-off restarting failed container backend in pod backend-7567c7b8bc-vmqch_shopflow(d127278c-035b-4cb0-abe5-3dc09dd6ff79)
+20m         Normal    Pulled                         pod/backend-7567c7b8bc-vmqch      Container image "shopflow-api:1.0.0" already present on machine and can be accessed by the pod
+20m         Normal    Created                        pod/backend-7567c7b8bc-vmqch      Container created
+20m         Normal    Started                        pod/backend-7567c7b8bc-vmqch      Container started
+19m         Warning   Unhealthy                      pod/backend-7567c7b8bc-vmqch      Liveness probe failed: Get "http://10.244.0.28:5000/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+18m         Warning   Unhealthy                      pod/backend-7567c7b8bc-5zg2s      Readiness probe failed: Get "http://10.244.0.21:5000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+18m         Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 3; reason: All metrics below target
+18m         Normal    ScalingReplicaSet              deployment/backend                Scaled down replica set backend-7567c7b8bc from 4 to 3
+18m         Normal    SuccessfulDelete               replicaset/backend-7567c7b8bc     Deleted pod: backend-7567c7b8bc-vmqch
+18m         Normal    Killing                        pod/backend-7567c7b8bc-vmqch      Stopping container backend
+18m         Warning   Unhealthy                      pod/backend-7567c7b8bc-cbg75      Readiness probe failed: HTTP probe failed with statuscode: 503
+18m         Warning   Unhealthy                      pod/backend-7567c7b8bc-vmqch      Readiness probe failed: Get "http://10.244.0.28:5000/ready": read tcp 10.244.0.1:49804->10.244.0.28:5000: read: connection reset by peer
+18m         Warning   Unhealthy                      pod/postgres-0                    Readiness probe failed: /var/run/postgresql:5432 - rejecting connections
+18m         Warning   Unhealthy                      pod/redis-5869899d84-gtcfd        (combined from similar events): Readiness probe errored and resulted in unknown state: rpc error: code = Unknown desc = container not running (9f7e1c67ca3a0f1698683e2ba03a55684f6a6de0435f6601e77140767a7949c9)
+17m         Warning   Unhealthy                      pod/backend-7567c7b8bc-vmqch      Readiness probe failed: Get "http://10.244.0.28:5000/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+16m         Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 2; reason: All metrics below target
+16m         Normal    ScalingReplicaSet              deployment/backend                Scaled down replica set backend-7567c7b8bc from 3 to 2
+16m         Normal    Killing                        pod/backend-7567c7b8bc-hk848      Stopping container backend
+16m         Normal    SuccessfulDelete               replicaset/backend-7567c7b8bc     Deleted pod: backend-7567c7b8bc-hk848
+16m         Warning   Unhealthy                      pod/backend-7567c7b8bc-hk848      Readiness probe failed: Get "http://10.244.0.22:5000/ready": dial tcp 10.244.0.22:5000: connect: connection refused
