@@ -34,6 +34,8 @@ spec:
         app.kubernetes.io/name: frontend
         app.kubernetes.io/part-of: shopflow
     spec:
+      serviceAccountName: frontend
+      automountServiceAccountToken: false
       containers:
         - name: frontend
           image: shopflow-frontend:1.0.0
@@ -44,6 +46,10 @@ spec:
             runAsNonRoot: true
             runAsUser: 101
             allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
           readinessProbe:
             httpGet:
               path: /
