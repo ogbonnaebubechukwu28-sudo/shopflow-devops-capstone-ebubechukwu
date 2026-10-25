@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shopflow
+  namespace: argocd
+spec:
+  project: shopflow
+  source:
+    repoURL: https://github.com/ogbonnaebubechukwu28-sudo/shopflow-devops-capstone-ebubechukwu.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: shopflow
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      name: backend
+      jsonPointers:
+        - /spec/replicas
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
