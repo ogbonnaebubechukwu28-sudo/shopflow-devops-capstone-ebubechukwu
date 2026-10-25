@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: shopflow
+  namespace: argocd
+spec:
+  description: ShopFlow application (restricted to this repository and namespace)
+  sourceRepos:
+    - https://github.com/ogbonnaebubechukwu28-sudo/shopflow-devops-capstone-ebubechukwu.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: shopflow
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
