@@ -63,11 +63,14 @@ spec:
               command: ["pg_isready", "-U", "shopflow", "-d", "shopflow"]
             initialDelaySeconds: 5
             periodSeconds: 5
+            timeoutSeconds: 5
           livenessProbe:
             exec:
               command: ["pg_isready", "-U", "shopflow", "-d", "shopflow"]
             initialDelaySeconds: 30
             periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
           resources:
             requests:
               cpu: 100m

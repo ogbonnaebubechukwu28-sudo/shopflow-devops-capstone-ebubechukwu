@@ -13,7 +13,7 @@ services:
   backend:
     build:
       context: ../application/backend
-    image: shopflow-api:1.0.0
+    image: shopflow-api:1.0.1
     environment:
       DATABASE_URL: postgresql+psycopg2://shopflow:${POSTGRES_PASSWORD:-shopflow}@db:5432/shopflow
       REDIS_URL: redis://cache:6379/0

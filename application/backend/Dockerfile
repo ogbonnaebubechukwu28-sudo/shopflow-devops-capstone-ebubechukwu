@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 LABEL org.opencontainers.image.title="shopflow-api" \
-      org.opencontainers.image.version="1.0.0"
+      org.opencontainers.image.version="1.0.1"
 
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
