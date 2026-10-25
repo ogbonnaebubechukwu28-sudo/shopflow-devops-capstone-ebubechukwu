@@ -34,8 +34,11 @@ dashboardProviders:
 dashboardsConfigMaps:
   shopflow: shopflow-dashboard
 livenessProbe:
-  initialDelaySeconds: 300
+  initialDelaySeconds: 1500
   timeoutSeconds: 10
 readinessProbe:
   initialDelaySeconds: 60
   timeoutSeconds: 10
+env:
+  GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+  GF_ANALYTICS_REPORTING_ENABLED: "false"
