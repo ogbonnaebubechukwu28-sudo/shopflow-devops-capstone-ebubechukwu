@@ -8,8 +8,8 @@ resources:
     cpu: 50m
     memory: 128Mi
   limits:
-    cpu: 300m
-    memory: 256Mi
+    cpu: 1000m
+    memory: 400Mi
 datasources:
   datasources.yaml:
     apiVersion: 1
@@ -33,3 +33,9 @@ dashboardProviders:
           path: /var/lib/grafana/dashboards/shopflow
 dashboardsConfigMaps:
   shopflow: shopflow-dashboard
+livenessProbe:
+  initialDelaySeconds: 300
+  timeoutSeconds: 10
+readinessProbe:
+  initialDelaySeconds: 60
+  timeoutSeconds: 10
