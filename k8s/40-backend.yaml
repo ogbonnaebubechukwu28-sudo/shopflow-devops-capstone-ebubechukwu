@@ -37,6 +37,8 @@ spec:
         app.kubernetes.io/name: backend
         app.kubernetes.io/part-of: shopflow
     spec:
+      serviceAccountName: backend
+      automountServiceAccountToken: false
       containers:
         - name: backend
           image: shopflow-api:1.0.1
@@ -63,6 +65,10 @@ spec:
             runAsNonRoot: true
             runAsUser: 1000
             allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
           readinessProbe:
             httpGet:
               path: /ready
