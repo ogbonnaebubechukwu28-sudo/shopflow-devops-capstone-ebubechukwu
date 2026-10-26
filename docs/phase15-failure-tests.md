@@ -19,7 +19,7 @@ Recovered by PR #21 (fix green) and PR #22 (traffic back to blue). Outage at lea
 - Run 1: 4 parallel request loops. HPA reported CPU 216% of request (target 70%) and scaled the backend 2 to 4 pods, with the
   condition ScalingLimited (wanted more than the maximum of 4). The load generator printed two HTTP 500 errors. Cause not
   established: those pods were removed on scale-down and their logs were lost. Not reproduced.
-- Run 2 (measured, docs/evidence/test3-load-run2.log): 4 workers for 120 s sent 23,561 requests (about 196 per second) with 0 failures.
+- Run 2 (measured, docs/evidence/test3-load-run2.txt): 4 workers for 120 s sent 23,561 requests (about 196 per second) with 0 failures.
   HPA scaled 2 to 4 again. All four pods reported 0 responses with status 500. CPU returned to 5% after the load.
 - Scale-down is delayed by the HPA stabilisation window (about 5 min), as designed.
 - Finding: HPA events show intermittent metrics API failures (Unauthorized, unable to handle the request, no metrics returned).
