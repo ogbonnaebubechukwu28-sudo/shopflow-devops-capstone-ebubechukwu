@@ -1,0 +1,5 @@
+worker 3 ok=5847 bad=0
+worker 1 ok=5904 bad=0
+worker 2 ok=5891 bad=0
+worker 4 ok=5919 bad=0
+pod "load-gen" deleted
