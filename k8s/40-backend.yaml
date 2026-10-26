@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/part-of: shopflow
 spec:
   selector:
-    app.kubernetes.io/name: backend-green
+    app.kubernetes.io/name: backend
   ports:
     - name: http
       port: 5000
