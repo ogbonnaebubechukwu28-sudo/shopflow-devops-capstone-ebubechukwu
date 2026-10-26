@@ -19,7 +19,7 @@ cache = redis.from_url(os.getenv('REDIS_URL', 'redis://localhost:6379/0'), decod
 # application) and Phase 9 (observability) sections require but the starter
 # source did not include.
 metrics = PrometheusMetrics(app)
-metrics.info('shopflow_app_info', 'ShopFlow application info', version='1.0.0')
+metrics.info('shopflow_app_info', 'ShopFlow application info', version=os.getenv('APP_VERSION', '1.0.0'))
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -39,7 +39,7 @@ class Order(db.Model):
 
 @app.get('/')
 def index():
-    return jsonify(application='ShopFlow API', version='1.0.0', message='Welcome to ShopFlow')
+    return jsonify(application='ShopFlow API', version=os.getenv('APP_VERSION', '1.0.0'), message='Welcome to ShopFlow')
 
 @app.get('/health')
 def health():
@@ -56,6 +56,8 @@ def readiness():
 
 @app.get('/api/products')
 def get_products():
+    if os.getenv('SIMULATE_FAILURE') == 'true':
+        return jsonify(error='simulated failure'), 500
     products = Product.query.order_by(Product.id.desc()).all()
     return jsonify([{'id': p.id, 'name': p.name, 'description': p.description, 'price': p.price, 'stock': p.stock} for p in products])
 
