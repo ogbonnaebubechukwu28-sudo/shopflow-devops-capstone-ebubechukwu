@@ -1,0 +1,9 @@
+postgres-0 2026-11-04 20:37:10.982 UTC [26] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 rem
+postgres-0 2026-11-04 20:37:10.901 UTC [26] LOG:  checkpoint starting: time
+
+postgres-0 2026-11-04 20:31:56.522 UTC [1] LOG:  database system is ready to accept connections
+
+postgres-0 2026-11-04 20:31:56.360 UTC [28] LOG:  database system was shut down at 2026-11-04 20:31:29 UTC
+
+postgres-0 2026-11-04 20:31:53.812 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+

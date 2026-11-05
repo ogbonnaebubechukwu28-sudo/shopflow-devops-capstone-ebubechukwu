@@ -53,6 +53,7 @@ flowchart LR
 | Argo CD | v3.5.4 (core install) |
 | Prometheus chart | prometheus-community/prometheus 29.34.0 |
 | Grafana chart | grafana-community/grafana 13.7.0 |
+| Loki and Alloy | grafana-community/loki 18.17.1 (Loki 3.7.8), Alloy v1.21.1 |
 | Python / Postgres / Redis / nginx | 3.12 / 16-alpine / 7-alpine / nginx-unprivileged 1.27-alpine |
 
 ## 3. Repository Structure
@@ -153,8 +154,10 @@ BackendHighLatency, PodRestartingFrequently, DeploymentReplicasUnavailable. A 10
 **Honest status:** Grafana 13 could not run reliably in 3.8 GB of memory shared with the whole cluster (very slow start,
 killed by probes), so its configuration and dashboard are in Git but Prometheus is the working monitoring system.
 
-**Logging:** centralized logging (Loki) is not implemented yet. Logs are read with `kubectl logs`. The incident
-evidence is in `docs/incident-2026-10-21-probe-timeouts.txt`.
+**Logging (done):** Loki (single binary, filesystem storage) receives the logs of every pod in the `shopflow` namespace from
+Grafana Alloy, with the labels `app`, `pod` and `container`. Because Grafana could not run reliably on this machine, logs are
+searched with LogQL through Loki's HTTP API. Queries and results: [`docs/phase10-notes.md`](docs/phase10-notes.md) and
+`docs/evidence/loki-query*.txt`. Together they cost about 190 MiB of memory.
 
 ## 9. Security
 
@@ -211,10 +214,10 @@ Four scenarios (broken release, pod deletion, traffic increase with autoscaling,
 - Start-up order matters (DNS, database, apps); the apps do not wait for their dependencies yet.
 - A cache outage should degrade the API, not remove every pod from service.
 - A protected branch with mandatory CI makes rollback slow; write a break-glass procedure.
-- Known limits: 3.8 GB machine, Grafana not stable, centralized logging not done, Vercel page needs a tunnel to show data.
+- Known limits: 3.8 GB machine, Grafana not stable, Vercel page needs a tunnel to show data.
 
 ## Problems Encountered
 
 Phase notes with the issues found and their fixes: [Phase 1](docs/phase1-notes.md), [Phase 3](docs/phase3-notes.md),
-[Phase 4](docs/phase4-notes.md), [Phase 5](docs/phase5-notes.md), [Phase 9](docs/phase9-notes.md),
+[Phase 4](docs/phase4-notes.md), [Phase 5](docs/phase5-notes.md), [Phase 9](docs/phase9-notes.md), [Phase 10](docs/phase10-notes.md),
 [Phase 11](docs/phase11-notes.md), [Phase 12](docs/phase12-notes.md), [Phase 13](docs/phase13-notes.md).
