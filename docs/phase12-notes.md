@@ -34,4 +34,4 @@
 - The backend briefly went to 4 pods with two in CrashLoopBackOff, then recovered by itself.
 
 ## Evidence
-- Screenshots phase12-01 to phase12-06 and the git log of PRs #14, #15 and #16.
+- Evidence: pull requests #14, #15 and #16, the git history of main, and the Application history from kubectl get application shopflow -n argocd.
