@@ -34,7 +34,7 @@
   (with the docker driver on Linux the terminal must stay open).
 
 ## Evidence
-- Screenshots: kubectl get all,hpa,pdb,pvc -n shopflow; the app in the browser; kubectl top pods.
+- Evidence: the kubectl get all,hpa,pdb,pvc output appended at the end of this file, and the manifests in k8s/.
 NAME                            READY   STATUS    RESTARTS   AGE
 pod/backend-55d45cf984-rb29p    1/1     Running   0          11m
 pod/backend-55d45cf984-sl8sr    1/1     Running   0          12m

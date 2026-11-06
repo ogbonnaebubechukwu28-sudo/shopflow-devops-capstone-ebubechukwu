@@ -30,7 +30,7 @@ All three jobs are required status checks on main (GitHub ruleset).
    The backend image passed the scan first time.
 
 ## Evidence
-- Screenshots: failed pip-audit, failed flake8, failed Trivy scan, final all-green PR, ruleset with required checks.
+- Evidence: pull request #7 and its failed and passed Actions runs (public on GitHub), and the main ruleset with its required checks.
 - Pull request #7 (CI pipeline) and its Actions runs.
 
 ## Lessons learned

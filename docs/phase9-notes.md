@@ -20,7 +20,7 @@
 - Postgres, Redis, frontends and a backend pod were restarted by Kubernetes at the same time (liveness probe timeouts)
   while the node was busy pulling images. Postgres rejected connections while restarting, so /ready returned 503 and
   /api/products returned 500. The HPA scaled the backend from 2 to 4 and back. All four alerts fired.
-- Evidence: docs/incident-2026-10-21-probe-timeouts.txt, Prometheus alert screenshots.
+- Evidence: docs/incident-2026-10-21-probe-timeouts.txt (Kubernetes events). The Prometheus alert history was not kept, because Prometheus has no persistent storage.
 - Fix: probe timeoutSeconds raised to 5 and failureThreshold to 5 on Postgres, Redis and backend.
 
 ## Finding 3: cold start after a PC shutdown
@@ -41,5 +41,5 @@
 - Other DNS findings: WSL and the Minikube node need "nameserver 8.8.8.8" set after every restart or image pulls fail.
 
 ## Evidence
-- Screenshots: Prometheus targets, alerts, graphs (request rate, restarts, memory, CPU, replicas).
+- Evidence: the Prometheus targets, alerts and graph pages are shown live in the demo. They were not captured as files.
 - Files: monitoring/, docs/incident-2026-10-21-probe-timeouts.txt, scripts/start-cluster.sh.

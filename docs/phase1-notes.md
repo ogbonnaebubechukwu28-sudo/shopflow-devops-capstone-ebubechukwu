@@ -80,5 +80,4 @@ serving the page correctly in the browser and via nginx's `/api/` proxy
 /api/orders` returned `201`). Healthcheck command itself needed
 investigating - see follow-up fix below.
 
-Screenshot evidence: `screenshots/phase1/` (compose up output, `docker
-compose ps`, `/metrics` output, frontend showing seeded products).
+Evidence: the commands and their output are recorded in this file; no screenshot files were kept for this phase.

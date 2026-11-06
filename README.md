@@ -216,6 +216,58 @@ Four scenarios (broken release, pod deletion, traffic increase with autoscaling,
 - A protected branch with mandatory CI makes rollback slow; write a break-glass procedure.
 - Known limits: 3.8 GB machine, Grafana not stable, Vercel page needs a tunnel to show data.
 
+## Technology Choices
+
+| Need | Chosen | Why | Not chosen |
+|---|---|---|---|
+| Local cluster | Minikube (docker driver) | Required Track A minimum, runs on a laptop | AWS EC2 / Terraform / Ansible (Track B, optional) |
+| CI | GitHub Actions | Lives with the repo, required checks on pull requests | external CI servers |
+| Quality and security gates | flake8, hadolint, pytest, pip-audit, Trivy, Gitleaks | Cover code, Dockerfiles, dependencies, images and secrets, each failing the build | - |
+| GitOps | Argo CD, core install | Git as the source of truth, drift detection and self-heal; no UI or login server keeps memory low | full Argo CD install (about 7 pods) |
+| Metrics | Prometheus (lean Helm install) | Standard for Kubernetes, alert rules built in; Alertmanager and node-exporter left out to save memory | kube-prometheus-stack (far too heavy for 3.8 GB) |
+| Dashboards | Grafana | Standard Prometheus front end; configuration and dashboard are in Git | - |
+| Logs | Loki + Alloy | Labels instead of full-text indexing, so about 190 MiB in total | Promtail (replaced by Alloy), EFK (far heavier) |
+| Release strategy | Blue-green with a Service selector switch | No extra controller; instant switch and rollback; easy to show | canary with a rollout controller (extra components) |
+| Package installs | Helm | Pinned chart versions for Prometheus, Grafana and Loki | raw manifests for third-party software |
+| Public frontend | Vercel (static upload) | Free static hosting for the one-page frontend | hosting the backend publicly |
+
+## Rollback Procedure
+
+Every release and every rollback is a reviewed Git change that Argo CD applies, and the cluster state is verified afterwards.
+
+**1. Roll back a release (blue-green).** Blue keeps running while green is live, so traffic can return at once.
+```bash
+git checkout main && git pull
+git checkout -b revert/<release-name>
+git revert --no-edit <commit-that-switched-traffic>
+git push -u origin revert/<release-name>      # open the PR, wait for the checks, merge
+git checkout main && git pull
+kubectl annotate application shopflow -n argocd argocd.argoproj.io/refresh=hard --overwrite
+```
+
+**2. Roll back any other manifest change.** Revert its commit the same way. Image versions are pinned in the manifests, so
+reverting a tag line restores the previous version.
+
+**3. Verify.**
+```bash
+kubectl get svc backend -n shopflow -o jsonpath='{.spec.selector}'; echo
+kubectl get application shopflow -n argocd
+kubectl exec -n shopflow deploy/frontend -- sh -c 'for i in $(seq 1 30); do wget -q -T 2 -O- http://backend:5000/api/products >/dev/null && echo "$(date +%T) OK" || echo "$(date +%T) FAIL"; sleep 2; done'
+```
+
+**4. Emergency (not yet rehearsed).** When users are failing and waiting for CI is too slow: pause automated sync, point the Service
+back at blue by hand, then record the change in Git and restore sync.
+```bash
+kubectl patch application shopflow -n argocd --type json -p '[{"op":"remove","path":"/spec/syncPolicy/automated"}]'
+kubectl patch service backend -n shopflow -p '{"spec":{"selector":{"app.kubernetes.io/name":"backend"}}}'
+# afterwards: make the same change in Git through a pull request, then
+kubectl apply -f gitops/application.yaml
+```
+
+**5. Data.** There are no schema migrations, and the database volume is kept. A rollback never changes stored data.
+
+Measured example: the 2026-10-26 broken release, see [`docs/incident-2026-10-26-broken-release.md`](docs/incident-2026-10-26-broken-release.md).
+
 ## Problems Encountered
 
 Phase notes with the issues found and their fixes: [Phase 1](docs/phase1-notes.md), [Phase 3](docs/phase3-notes.md),
